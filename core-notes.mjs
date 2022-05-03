@@ -31,14 +31,18 @@ const addNote = function (title, body) {
 }
 
 const removeNote = function (title) {
-    const notes = [];
-    const notesToKeep = [];
+    const notes = loadNotes();
+    const noteExist = findNote(notes, title);
 
-    if (true) {
-        //
+    if (noteExist) {
+        
+        const newNotes = notes.filter(note => note != noteExist);
+        
+        saveNotes(newNotes);
+        
     } else {
-        //
-    }
+        errorHelper();
+    }    
 }
 
 const listNotes = function () {

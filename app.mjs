@@ -47,7 +47,7 @@ yarg.command({
         }
     },
     handler(argv) {
-        console.log('rimuovi una nota');
+        core.removeNote(argv.title);
     }
 })
 
