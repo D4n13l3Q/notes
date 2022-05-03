@@ -62,7 +62,7 @@ yarg.command({
         }
     },
     handler(argv) {
-        console.log('leggi una nota');
+        core.readNote(argv.title);
     }
 })
 

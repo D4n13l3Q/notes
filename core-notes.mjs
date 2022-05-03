@@ -55,13 +55,13 @@ const listNotes = function () {
 }
 
 const readNote = function (title) {
-    const notes = [];
+    const notes = loadNotes();
     const noteExist = findNote(notes, title);
 
     if (noteExist) {
-        //
+        displayNote(noteExist);
     } else {
-        //
+        errorHelper();
     }
 }
 
