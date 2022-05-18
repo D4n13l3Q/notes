@@ -16,7 +16,7 @@ const errorHelper = function () {
 const addNote = function (title, body) {
     const notes = loadNotes();
     const noteExist = findNote(notes, title);
-
+    
     if (!noteExist) {
         notes.push({
             title: title,
@@ -26,7 +26,7 @@ const addNote = function (title, body) {
         // console.log('ora le note sono state modificare: ', notes)
         saveNotes(notes);
     } else {
-        chalk.red('Non puoi inserire la nota, esiste già.', '\n')
+        console.log(chalk.red('Non puoi inserire la nota, esiste già.', '\n'));
     }
 }
 
