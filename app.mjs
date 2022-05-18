@@ -10,7 +10,7 @@ yarg.command({
     command: 'list',
     describe: 'Lista le tue note',
     handler() {
-        core.listNotes();
+        console.log(core.listNotes());
     }
 })
 
@@ -32,7 +32,7 @@ yarg.command({
     handler(argv) {
         //console.log('Risultato', argv.title, argv.body);
 
-        core.addNote(argv.title, argv.body);
+        console.log(core.addNote(argv.title, argv.body));
     }
 })
 
@@ -47,7 +47,7 @@ yarg.command({
         }
     },
     handler(argv) {
-        core.removeNote(argv.title);
+        console.log(core.removeNote(argv.title));
     }
 })
 
@@ -62,7 +62,7 @@ yarg.command({
         }
     },
     handler(argv) {
-        core.readNote(argv.title);
+        console.log(core.readNote(argv.title));
     }
 })
 

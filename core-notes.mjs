@@ -5,12 +5,12 @@ const findNote = function (notes, title) {
     return notes.find(note => note.title === title);
 }
 
-const displayNote = function (note) {
-    console.log('Nota \n\t', `${chalk.red(note.title)}: ${chalk.green(note.body)}`, '\n')
+const getNote = function (note) {
+    return `${chalk.red(note.title)}: ${chalk.green(note.body)}`;
 }
 
 const errorHelper = function () {
-    console.log('\n\t', chalk.red('Nota non trovata.'), '\n');
+    return chalk.red('Nota non trovata.');
 }
 
 const addNote = function (title, body) {
@@ -18,15 +18,20 @@ const addNote = function (title, body) {
     const noteExist = findNote(notes, title);
     
     if (!noteExist) {
+        
         notes.push({
             title: title,
             body: body
         })
-        // console.log('posso inserire la nota', '\n')
-        // console.log('ora le note sono state modificare: ', notes)
+        
         saveNotes(notes);
+        
+        return "Done";
+        
     } else {
-        console.log(chalk.red('Non puoi inserire la nota, esiste già.', '\n'));
+        
+        return chalk.red('Non puoi inserire la nota, esiste già.');
+        
     }
 }
 
@@ -40,22 +45,21 @@ const removeNote = function (title) {
         
         saveNotes(newNotes);
         
+        return "Done";
+        
     } else {
+        
         errorHelper();
+        
     }    
 }
 
 const listNotes = function () {
     const notes = loadNotes();
-    console.log('Note:\t');
-
-    notes.map(note => {
-        displayNote(note); // o in alternativa le righe seguenti:
-        // const title = chalk.green(note.title);
-        // const body = chalk.red(note.body);
-        // console.log('\t', `${title} - ${body}`, '\n');
-    })
-    // console.log(notes, chalk('questo messaggio Lista note'), '\n');
+    
+    const output = notes.map( note => getNote(note) );
+    
+    return output.join('\n');
 }
 
 const readNote = function (title) {
@@ -63,9 +67,13 @@ const readNote = function (title) {
     const noteExist = findNote(notes, title);
 
     if (noteExist) {
-        displayNote(noteExist);
+        
+        return getNote(noteExist);
+        
     } else {
-        errorHelper();
+        
+        return errorHelper();
+        
     }
 }
 
@@ -76,12 +84,15 @@ const saveNotes = function (notes) {
 
 const loadNotes = function () {
     try {
+        
         const data = fs.readFileSync('database/notes.json')
         const result = data.toString()
         return JSON.parse(result)
+        
     } catch (e) {
-        // console.log('ERRORE file non trovato', e.message)
+        
         return []
+        
     }
 }
 
