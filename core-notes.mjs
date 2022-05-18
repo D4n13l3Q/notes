@@ -5,8 +5,8 @@ const findNote = function (notes, title) {
     return notes.find(note => note.title === title);
 }
 
-const getNote = function (note) {
-    return `${chalk.red(note.title)}: ${chalk.green(note.body)}`;
+const displayNote = function (note) {
+    return `${chalk.red(note.title)}:\n${chalk.green(note.body)}`;
 }
 
 const errorHelper = function () {
@@ -57,7 +57,7 @@ const removeNote = function (title) {
 const listNotes = function () {
     const notes = loadNotes();
     
-    const output = notes.map( note => getNote(note) );
+    const output = notes.map( note => chalk.red(note.title) );
     
     return output.join('\n');
 }
@@ -68,7 +68,7 @@ const readNote = function (title) {
 
     if (noteExist) {
         
-        return getNote(noteExist);
+        return displayNote(noteExist);
         
     } else {
         
